@@ -3,6 +3,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  Index,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -27,15 +28,22 @@ export class Solicitud {
   @Column()
   descripcion: string;
 
-  // Guarda el username del asesor responsable (ej: asesor1).
-  @ApiProperty({ example: 'asesor1' })
-  @Column()
-  asesor: string;
+  // Username del asesor asignado (ej: asesor1). Es null mientras un admin o
+  // supervisor no la asigne. Se indexa porque se usa para filtrar y por permisos.
+  @ApiProperty({
+    example: 'asesor1',
+    nullable: true,
+    description: 'Asesor asignado; null si todavía no tiene asignación',
+  })
+  @Index()
+  @Column({ type: 'varchar', nullable: true })
+  asesor: string | null;
 
   @ApiProperty({
     enum: EstadoSolicitud,
     example: EstadoSolicitud.PENDIENTE,
   })
+  @Index()
   @Column({
     type: 'simple-enum',
     enum: EstadoSolicitud,
@@ -45,6 +53,7 @@ export class Solicitud {
 
   // TypeORM llena esta fecha sola al insertar.
   @ApiProperty({ example: '2026-10-12T15:30:00.000Z' })
+  @Index()
   @CreateDateColumn()
   creadaEn: Date;
 
