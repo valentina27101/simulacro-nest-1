@@ -60,7 +60,7 @@ export class SolicitudesService {
     return solicitud;
   }
 
-  // RN-03: solo PENDIENTE -> EN_GESTION y EN_GESTION -> RESUELTA.
+  // solo PENDIENTE -> EN_GESTION y EN_GESTION -> RESUELTA.
   async cambiarEstado(
     id: number,
     dto: UpdateEstadoDto,

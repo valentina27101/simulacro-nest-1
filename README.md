@@ -94,7 +94,7 @@ Son pruebas e2e (Supertest) con SQLite en memoria y claves propias; no usan tu `
 
 ## 8. Swagger
 
-Con la app en marcha: **http://localhost:3000/docs**
+Con la app en marcha: **http://localhost:3001/docs**
 
 Pulsa **Authorize**, escribe una API Key (por ejemplo `clave-prueba-1`) y en cada endpoint llena el encabezado `x-user` (por ejemplo `asesor1`).
 
